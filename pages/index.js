@@ -2,21 +2,26 @@ import Head from 'next/head'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import Post from '../components/Post'
 
-export default function Home() {
+export default function Home({posts}) {
+  
  
   return (
-    <div>
+    <>
       <Head>
         <title>Developer Blog</title>
-        
       </Head>
-      <h2>Hello</h2>
-      </div>
+      <div className='posts'>
+      {posts.map((item, index) =>(
+        <Post key = {index} post={item}/>))}
+        </div>
+      
+    </>
 
       
   )
-}
+} 
 
 export async function getStaticProps() {
   // Get files from the posts dir
@@ -39,9 +44,8 @@ export async function getStaticProps() {
   }
  })
 
-console.log(posts)
   return {
-    props: {posts: 'Hello world'}
+    props: {posts: posts}
   }
 
 }
