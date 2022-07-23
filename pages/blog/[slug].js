@@ -29,7 +29,7 @@ export default function PostPage({
 }
 
 export async function getStaticPaths() {
-    const files = fs.readdirSync(path.join('Posts'))
+    const files = fs.readdirSync(path.join('posts'))
 
     const paths = files.map((item) =>({
         params: {
